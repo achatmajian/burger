@@ -1,0 +1,16 @@
+.title {
+    padding-top: 50px;
+    padding-left: 550px;
+    padding-right: 550px;
+  }
+  
+  .form-container {
+    padding-left: 600px;
+    padding-right: 600px;
+    padding-bottom: 50%;
+  }
+  
+  .submit-button {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
