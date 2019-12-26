@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Burger Time!</title>
+        <!-- Required meta tags -->
+        <meta charset= "utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit-no">
+        <script src="https://code.jquery.com/jquery.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    </head>
+    <body>
+        {{{ body }}}
+
+        <script>
+            $("#submitBurger").on("click", function(event) {
+                var newBurger = {
+                    burger_name: $("#newburger").val().trim(),
+                    devoured: 0
+                };
+                console.log(newBurger)
+                $.ajax("/api/burgers", {
+                    type: "POST", 
+                    data: newBurger
+                }).then(function() {
+                    console.log("Added ", newBurger);
+                    location.reload();
+                });
+            });
+            $("#eatBurger").on("click", function(event) {
+                event.preventDefault();
+                console.log("clicked eat burger button");
+                var id = $(this).data("id");
+                console.log(id)
+                var devouredStatus = {
+                    devoured: 1
+                };
+                $.ajax("/api/burgers/" + id, {
+                    type: "PUT",
+                    data: devouredStatus
+                }).then(function() {
+                    console.log("Eaten ", id.burger_name);
+                    location.reload();
+                });
+            });
+            
+        </script>
+    </body>
+</html>

@@ -11,29 +11,77 @@
   </head>
   <body>
   
-    <div class="hero is-warning is-fullheight">
+    <div class="hero is-fullheight" id="hero-wrapper"> <!-- Hero -->
     <div class="hero-body">
         <div class="container">
         <h1 class="title">Burger Time!</h1>
         </div>
     </div>
       
-      
-      <div class="form-container">
+      <div class="form-container"> <!-- Form -->
             <div class="field">
-            <label class="label">Enter a burger you'd like to eat</label>
-            <div class="control">
-                <textarea class="textarea" placeholder="Burgers go here"></textarea>
-            </div>
+                <label class="label">Enter a burger you'd like to eat</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Burgers go here"></textarea>
+                </div>
             </div>
 
             <div class="field is-grouped">
             <div class="control submit-button">
-                <button class="button is-link">Submit</button>
+                <button class="button is-link" id="submitBurger">Submit Burger</button>
             </div>
-        </div>
+            </div>
         
+    </div> <!-- Form Close -->
+
+    <div class="columns">
+  <div class="column is-half" id="left column">
+   
+      <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p><strong>New Burgers:</strong></p>
+              <ul>
+                {{#each burgers}}
+                  {{#unless devoured}}
+                    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                    <button type="button" class="button eatBurger" id ="eatBurger" data-id="{{this.id}}" 
+                    data-newDevoured="{{devoured}}">Eat Burger</button>
+                    <hr>
+                    {{/unless}}
+                  {{/each}}
+              </ul>
+          </div>
+        </div>
+      </article>
     </div>
+      </div> <!-- Left Column Close -->
+
+  <div class="column is-half" id="right column">
+
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p><strong>Devoured Burgers:</strong></p>
+            <ul>
+               {{#each burgers}}
+                  {{#if devoured}}
+                    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                    <hr>
+                    {{/if}}
+                  {{/each}}
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div> <!-- Right Column Close -->
+  
+  </div> <!-- Columns Close -->
+
+    </div> <!-- Hero Close -->
     
   </body>
 </html>
